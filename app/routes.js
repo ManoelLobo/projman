@@ -22,4 +22,20 @@ routes.get('/signup', authController.signup);
 
 routes.post('/register', authController.register);
 
+/**
+ * Error handling
+ */
+routes.use((req, res) => {
+  res.render('errors/404');
+});
+
+routes.use((err, req, res, _next) => {
+  res.status(err.status || 500);
+
+  return res.render('errors/index', {
+    message: err.message,
+    error: process.env.NODE_ENV === 'production' ? {} : err,
+  });
+});
+
 module.exports = routes;
