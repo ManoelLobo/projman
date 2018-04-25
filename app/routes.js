@@ -8,5 +8,6 @@ const authController = require('./controllers/authController');
  * Auth
  */
 routes.get('/', authController.signin);
+routes.get('/signup', authController.signup);
 
 module.exports = routes;
