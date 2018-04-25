@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const routes = require('./app/routes');
 
 const app = express();
 
@@ -15,6 +16,6 @@ nunjucks.configure(path.resolve('app', 'views'), {
 app.set('view engine', 'njk');
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => res.send('Hello'));
+app.use('/', routes);
 
 app.listen(3000);
