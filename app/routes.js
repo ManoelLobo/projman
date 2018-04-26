@@ -2,7 +2,11 @@ const express = require('express');
 
 const routes = express.Router();
 
+const authMiddleware = require('./middlewares/auth');
+const guestMiddleware = require('./middlewares/guest');
+
 const authController = require('./controllers/authController');
+const dashboardController = require('./controllers/dashboardController');
 
 /**
  * Flash messages middleware
@@ -17,11 +21,18 @@ routes.use((req, res, next) => {
 /**
  * Auth
  */
-routes.get('/', authController.signin);
-routes.get('/signup', authController.signup);
+routes.get('/', guestMiddleware, authController.signin);
+routes.get('/signup', guestMiddleware, authController.signup);
 
 routes.post('/register', authController.register);
 routes.post('/authenticate', authController.authenticate);
+
+/**
+ * Dashboard
+ */
+routes.use('/app', authMiddleware);
+
+routes.get('/app/dashboard', dashboardController.index);
 
 /**
  * Error handling
