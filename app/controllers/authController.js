@@ -63,4 +63,8 @@ module.exports = {
       return next(err);
     }
   },
+
+  signout(req, res) {
+    return req.session.destroy(() => res.redirect('/'));
+  },
 };

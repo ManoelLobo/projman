@@ -23,6 +23,7 @@ routes.use((req, res, next) => {
  */
 routes.get('/', guestMiddleware, authController.signin);
 routes.get('/signup', guestMiddleware, authController.signup);
+routes.get('/signout', authController.signout);
 
 routes.post('/register', authController.register);
 routes.post('/authenticate', authController.authenticate);
