@@ -2,27 +2,14 @@
 
 {% block body %}
   <div class="wrapper">
-    <header id="header">
-      <div class="container">
-        <h1>Docfy</h1>
-        <div class="user-info">
-          <p class="welcome">
-            Bem vindo<br>
-            <strong>Usuário</strong>
-          </p>
-          <a href="/signout" class="btn btn-danger">
-            <img src="/img/signout.svg">
-          </a>
-        </div>
-      </div>
-    </header>
+    {% include 'partials/header.njk' %}
 
     <section id="main">
       <div class="container">
         <header>
-          <h2>Meus projetos (4)</h2>
+          <h2>Meus projetos ({{ projects.length }})</h2>
           <div class="addon">
-            <form action="" method="POST">
+            <form action="/app/projects/create" method="POST">
               <input type="text" name="name" placeholder="Novo projeto">
               <button type="submit" class="btn">
                 <img src="/img/plus.svg">
@@ -33,10 +20,9 @@
 
         <section id="content">
           <div class="project-list">
-            <a href="#">Exemplo de projeto</a>
-            <a href="#">Outro projeto</a>
-            <a href="#">Mais um projeto</a>
-            <a href="#">Projeto exemplo</a>
+            {% for project in projects %}
+              <a href="/app/projects/{{ project.id }}">{{ project.title }}</a>
+            {% endfor %}
           </div>
         </section>
       </div>
