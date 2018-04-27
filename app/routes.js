@@ -7,6 +7,7 @@ const guestMiddleware = require('./middlewares/guest');
 
 const authController = require('./controllers/authController');
 const dashboardController = require('./controllers/dashboardController');
+const projectController = require('./controllers/projectController');
 
 /**
  * Flash messages middleware
@@ -34,6 +35,11 @@ routes.post('/authenticate', authController.authenticate);
 routes.use('/app', authMiddleware);
 
 routes.get('/app/dashboard', dashboardController.index);
+
+/**
+ * Projects
+ */
+routes.post('/app/projects/create', projectController.store);
 
 /**
  * Error handling
