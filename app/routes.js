@@ -39,6 +39,7 @@ routes.get('/app/dashboard', dashboardController.index);
 /**
  * Projects
  */
+routes.get('/app/projects/:id', projectController.show);
 routes.post('/app/projects/create', projectController.store);
 
 /**
