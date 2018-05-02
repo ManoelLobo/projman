@@ -3,6 +3,11 @@ const { Project, Section } = require('../models');
 module.exports = {
   async store(req, res, next) {
     try {
+      if (!req.body.title) {
+        req.flash('error', 'Insira o nome do projeto');
+        return res.redirect('back');
+      }
+
       const project = await Project.create({ ...req.body, UserId: req.session.user.id });
 
       req.flash('success', 'Projeto criado com sucesso!');
