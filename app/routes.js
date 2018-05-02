@@ -49,6 +49,7 @@ routes.post('/app/projects/create', projectController.store);
  */
 routes.post('/app/projects/:projectId/sections/create', sectionController.store);
 routes.put('/app/projects/:projectId/sections/:sectionId', sectionController.update);
+routes.delete('/app/projects/:projectId/sections/:sectionId', sectionController.destroy);
 
 /**
  * Error handling

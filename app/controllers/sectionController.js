@@ -53,4 +53,21 @@ module.exports = {
       return next(err);
     }
   },
+
+  async destroy(req, res, next) {
+    try {
+      const section = await Section.findOne({
+        where: { id: req.params.sectionId },
+        include: [{ model: Project, where: { UserId: req.session.user.id } }],
+      });
+
+      await section.destroy();
+
+      req.flash('success', 'Seção removida!');
+
+      return res.redirect(`/app/projects/${req.params.projectId}/`);
+    } catch (err) {
+      return next(err);
+    }
+  },
 };

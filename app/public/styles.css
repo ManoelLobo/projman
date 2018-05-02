@@ -321,15 +321,20 @@ textarea:focus {
   margin: 0 0 20px;
 }
 
-.wrapper section#main #content article .project-header a {
+.wrapper section#main #content article .project-header form button {
   margin: 0 0 0 10px;
   color: #e06666;
   text-decoration: none;
   font-size: 14px;
+  border: 0;
+  background: transparent;
 }
 
 .wrapper section#main #content article .project-header a.edit {
+  margin: 0 0 0 10px;
   color: #48a2d9;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .wrapper section#main #content article h1 {
