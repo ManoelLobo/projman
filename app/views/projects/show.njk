@@ -16,11 +16,13 @@
       <section id="content">
         <nav>
           <div class="sessions">
-            <a href="">Geral</a>
-            <a href="" class="active">Banco de dados</a>
-            <a href="">Autenticação</a>
-            <a href="">API</a>
-            <a href="">Configurações</a>
+            {% for section in sections %}
+            <a
+              href="/app/projects/{{ project.id }}/sections/{{ section.id }}"
+              class="{% if section.id === activeSection.id %}active{% endif %}">
+              {{ section.title }}
+            </a>
+            {% endfor %}
           </div>
 
           <form action="" method="post">
@@ -29,16 +31,15 @@
           </form>
         </nav>
 
+        {% if activeSection %}
         <article>
           <div class="project-header">
-            <h1>Banco de dados</h1>
+            <h1>{{ activeSection.title }}</h1>
             <a href="">Remover seção</a>
           </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          {{ activeSection.content }}
         </article>
+        {% endif %}
       </section>
     </div>
   </section>

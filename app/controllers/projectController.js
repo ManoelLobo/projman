@@ -20,18 +20,29 @@ module.exports = {
 
   async show(req, res, next) {
     try {
-      const project = await Project.findAll({
-        include: [Section],
-        where: { UserId: req.session.user.id },
+      const { user } = req.session;
+      const { projectId, sectionId } = req.params;
+
+      const project = await Project.findOne({
+        where: { id: projectId, UserId: user.id },
       });
 
       const sections = await Section.findAll({
-        where: { ProjectId: req.params.id },
+        where: { ProjectId: projectId },
       });
 
-      const { user } = req.session;
+      let activeSection;
 
-      return res.render('projects/show', { user, project, sections });
+      if (sectionId) {
+        activeSection = await Section.findById(sectionId);
+      }
+
+      return res.render('projects/show', {
+        user,
+        project,
+        sections,
+        activeSection,
+      });
     } catch (err) {
       return next(err);
     }
