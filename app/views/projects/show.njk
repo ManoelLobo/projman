@@ -7,7 +7,7 @@
   <section id="main">
     <div class="container">
       <header>
-        <h2>{{ project.title }}</h2>
+        <h2><a href="/app/dashboard">Projetos</a> > {{ project.title }}</h2>
         <div class="addon">
           <a href="" class="btn btn-danger">Excluir projeto</a>
         </div>
@@ -25,8 +25,8 @@
             {% endfor %}
           </div>
 
-          <form action="" method="post">
-            <input type="text" name="name" placeholder="Nova seção">
+          <form action="/app/projects/{{ project.id }}/sections/create" method="POST">
+            <input type="text" name="title" placeholder="Nova seção">
             <button type="submit" class="btn"><img src="/img/plus.svg"></button>
           </form>
         </nav>

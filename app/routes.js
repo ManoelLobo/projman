@@ -8,6 +8,7 @@ const guestMiddleware = require('./middlewares/guest');
 const authController = require('./controllers/authController');
 const dashboardController = require('./controllers/dashboardController');
 const projectController = require('./controllers/projectController');
+const sectionController = require('./controllers/sectionController');
 
 /**
  * Flash messages middleware
@@ -42,6 +43,11 @@ routes.get('/app/dashboard', dashboardController.index);
 routes.get('/app/projects/:projectId', projectController.show);
 routes.get('/app/projects/:projectId/sections/:sectionId', projectController.show);
 routes.post('/app/projects/create', projectController.store);
+
+/**
+ * Sections
+ */
+routes.post('/app/projects/:projectId/sections/create', sectionController.store);
 
 /**
  * Error handling
