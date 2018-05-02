@@ -34,7 +34,7 @@ module.exports = {
       let activeSection;
 
       if (sectionId) {
-        activeSection = await Section.findById(sectionId);
+        activeSection = await Section.findOne({ where: { id: sectionId, ProjectId: projectId } });
       }
 
       return res.render('projects/show', {

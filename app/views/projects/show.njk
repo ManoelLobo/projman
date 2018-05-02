@@ -35,10 +35,28 @@
         <article>
           <div class="project-header">
             <h1>{{ activeSection.title }}</h1>
+            <a href="#" class="edit" data-modal-open="#edit-section">Editar</a>
             <a href="">Remover seção</a>
           </div>
           {{ activeSection.content }}
         </article>
+
+        <div class="modal" id="edit-section">
+          <form
+            action="/app/projects/{{ project.id }}/sections/{{ activeSection.id }}?_method=PUT"
+            method="POST"
+            class="modal-content"
+          >
+            <h2>{{ activeSection.title }}</h2>
+
+            <div class="content-container">
+              <textarea name="content" class="mde" id="" placeholder="Conteúdo da seção">{{ activeSection.content }}</textarea>
+            </div>
+
+            <button type="submit">Salvar edição</button>
+            <a href="#" data-modal-close="#edit-section">Cancelar</a>
+          </form>
+        </div>
         {% endif %}
       </section>
     </div>

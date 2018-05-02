@@ -48,6 +48,7 @@ routes.post('/app/projects/create', projectController.store);
  * Sections
  */
 routes.post('/app/projects/:projectId/sections/create', sectionController.store);
+routes.put('/app/projects/:projectId/sections/:sectionId', sectionController.update);
 
 /**
  * Error handling
