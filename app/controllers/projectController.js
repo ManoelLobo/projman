@@ -27,6 +27,11 @@ module.exports = {
         where: { id: projectId, UserId: user.id },
       });
 
+      if (!project) {
+        req.flash('error', 'Acesso negado');
+        return res.redirect('back');
+      }
+
       const sections = await Section.findAll({
         where: { ProjectId: projectId },
       });

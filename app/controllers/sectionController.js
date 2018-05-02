@@ -1,10 +1,19 @@
-const { Section } = require('../models');
+const { Project, Section } = require('../models');
 
 module.exports = {
   async store(req, res, next) {
     try {
       if (!req.body.title) {
         req.flash('error', 'Insira o nome da seção');
+        return res.redirect('back');
+      }
+
+      const project = await Project.findOne({
+        where: { id: req.params.projectId, UserId: req.session.user.id },
+      });
+
+      if (!project) {
+        req.flash('error', 'Acesso negado');
         return res.redirect('back');
       }
 
@@ -25,6 +34,15 @@ module.exports = {
   async update(req, res, next) {
     try {
       const section = await Section.findById(req.params.sectionId);
+
+      const project = await Project.findOne({
+        where: { id: section.ProjectId, UserId: req.session.user.id },
+      });
+
+      if (!project) {
+        req.flash('error', 'Acesso negado');
+        return res.redirect('back');
+      }
 
       section.update({ title: section.title, ...req.body });
 
