@@ -43,6 +43,7 @@ routes.get('/app/dashboard', dashboardController.index);
 routes.get('/app/projects/:projectId', projectController.show);
 routes.get('/app/projects/:projectId/sections/:sectionId', projectController.show);
 routes.post('/app/projects/create', projectController.store);
+routes.delete('/app/projects/:projectId', projectController.destroy);
 
 /**
  * Sections

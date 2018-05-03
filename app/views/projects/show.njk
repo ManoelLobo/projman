@@ -9,7 +9,9 @@
       <header>
         <h2><a href="/app/dashboard">Projetos</a> > {{ project.title }}</h2>
         <div class="addon">
-          <a href="" class="btn btn-danger">Excluir projeto</a>
+          <form action="/app/projects/{{ project.id }}?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Excluir projeto</button>
+          </form>
         </div>
       </header>
 
@@ -36,7 +38,7 @@
           <div class="project-header">
             <h1>{{ activeSection.title }}</h1>
             <a href="#" class="edit" data-modal-open="#edit-section">Editar</a>
-            <form action="/app/projects/{{ project.id }}/sections/{{ activeSection.id }}?_method=DELETE" method="post">
+            <form action="/app/projects/{{ project.id }}/sections/{{ activeSection.id }}?_method=DELETE" method="POST">
               <button type="submit">Remover seção</button>
             </form>
           </div>

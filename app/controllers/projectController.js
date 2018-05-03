@@ -52,4 +52,20 @@ module.exports = {
       return next(err);
     }
   },
+
+  async destroy(req, res, next) {
+    try {
+      const project = await Project.findOne({
+        where: { id: req.params.projectId, UserId: req.session.user.id },
+      });
+
+      await project.destroy();
+
+      req.flash('success', 'Projeto removido!');
+
+      return res.redirect('/app/dashboard');
+    } catch (err) {
+      return next(err);
+    }
+  },
 };
